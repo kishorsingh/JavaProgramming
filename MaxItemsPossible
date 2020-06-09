@@ -1,0 +1,64 @@
+/* Read input from STDIN. Print your output to STDOUT*/
+package com.kisor.hackerRankLeetcode;
+import java.io.*;
+import java.util.*;
+
+public class MaxItemsPossible {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> ingredRequired = new ArrayList<>();
+		ArrayList<Integer> totalQuantity = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter next number ");
+        int n = sc.nextInt();
+        while ( n <= 0) {
+//        	System.out.println("Enter a valid number");
+        	 n = sc.nextInt();
+        	}
+        System.out.println("");
+        
+        for(int j=0; j<n; j++) {
+        	int a = sc.nextInt();
+        	while ( a <= 0) {
+        	System.out.println("Enter a valid number");
+        	 a = sc.nextInt();
+        	}
+        	ingredRequired.add(a);
+        }
+        System.out.println("");
+        for(int j=0; j<n; j++) {
+        	int b = sc.nextInt();
+        	totalQuantity.add(b);
+        }      
+        try {
+        	MaxItemsPossible cc  = new MaxItemsPossible();
+        	System.out.print(cc.getMaxPowerpuffGirls(n, ingredRequired, totalQuantity));
+        }catch(ArithmeticException e) {
+        	e.printStackTrace();
+        }
+	}
+
+	public int getMaxPowerpuffGirls(int N, List<Integer> ingredRequired, List<Integer> totalQuantity) throws ArithmeticException{
+		   int max =0;
+		   ArrayList<Integer> finalList = new ArrayList<>();
+		  
+	      for(int i=0; i < N; i++) {
+	    	  int a = totalQuantity.get(i) / ingredRequired.get(i);
+	    	  finalList.add(a);
+	      }
+	      Collections.sort(finalList);
+	      max = finalList.get(0);
+	      if ( max < 0) {
+	    	  max =0;
+	      }		   
+		   return max;
+	}
+	
+	public int getMaxWin(int a, List<Integer> gTeam, List<Integer> otherTeam ) {
+		int totalWins =0;
+		
+		
+		return totalWins;
+	}
+}
