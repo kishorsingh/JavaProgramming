@@ -1,0 +1,64 @@
+package com.kisor.hackerRankLeetcode;
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class MaxScore {
+
+    /*
+     * Complete the 'maxScore' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER m
+     */
+
+    public static int maxScore(List<Integer> a, int m) {
+    // Write your code here
+    	int maxScore=0;
+    	int count=0, segCount=0;
+    	int totalSegment = a.size() / m;
+    	int remain = a.size() % m;
+    	Collections.sort(a);
+    	int indScore = 0, indSum = 0;
+    	
+    	for (int i =0; i < totalSegment; i++) {
+    		
+    		for(int k=0; k < m; k++) {
+    			indSum= indSum + a.get(count);
+    			count++;
+    		}    		
+    		segCount++;
+    		if((remain!=0) && (segCount == totalSegment)) {
+        		for (int n =totalSegment * m ; n < a.size(); n++) {
+        			indSum = indSum + a.get(n);
+        		}
+        	}
+    		indScore = segCount * indSum;
+    		maxScore = maxScore + indScore;
+    		System.out.println("This is Max Score : "+ maxScore);
+    		indSum=0;
+    	}    	
+    	return maxScore % 1000000007;
+
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) {
+    	ArrayList<Integer> arr = new ArrayList<>();
+    	for(int i=1; i <=1000; i++) {
+    		arr.add(i);
+    	}
+    	MaxScore rs = new MaxScore();
+    	rs.maxScore(arr, 5);
+
+    }
+}
