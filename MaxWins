@@ -1,0 +1,73 @@
+/* Read input from STDIN. Print your output to STDOUT*/
+package com.kisor.hackerRankLeetcode;
+import java.io.*;
+import java.util.*;
+
+public class MaxWins {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<Integer> ingredRequired = new ArrayList<>();
+		ArrayList<Integer> totalQuantity = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter next number ");
+        int m = sc.nextInt();
+        while ( m <= 0) {
+//        	System.out.println("Enter a valid number");
+        	 m = sc.nextInt();
+        	}
+        System.out.println("");
+        int n = sc.nextInt();
+        while ( n <= 0) {
+//        	System.out.println("Enter a valid number");
+        	 n = sc.nextInt();
+        	}
+        System.out.println("");
+        
+        for(int j=0; j<n; j++) {
+        	int a = sc.nextInt();
+        	while ( a <= 0) {
+        	System.out.println("Enter a valid number");
+        	 a = sc.nextInt();
+        	}
+        	ingredRequired.add(a);
+        }
+        System.out.println("");
+        for(int j=0; j<n; j++) {
+        	int b = sc.nextInt();
+        	totalQuantity.add(b);
+        }      
+        try {
+        	MaxWins cc  = new MaxWins();
+        	System.out.print(cc.getMaxWin(n, ingredRequired, totalQuantity));
+        }catch(ArithmeticException e) {
+        	e.printStackTrace();
+        }
+        
+	}
+
+	public int getMaxWin(int n, List<Integer> gTeam, List<Integer> oTeam ) {
+		int totalWins =0;
+		Collections.sort(gTeam);
+		Collections.sort(oTeam);
+		System.out.println("This is GTeam : " + gTeam);
+		System.out.println("This is OTeam : " + oTeam);
+		HashMap<Integer, Integer> hm = new HashMap<>();
+		int count=0;
+		for (int i = 0; i < n; i++) {
+			for(int j =count; j < n; j++) {
+					if(gTeam.get(i) > oTeam.get(j)) {
+					    totalWins ++;
+					    count = j;
+					    break;
+					}
+			    }
+			
+		}
+		
+		System.out.println(totalWins);
+		return totalWins;
+	}
+	
+}
+
