@@ -1,4 +1,3 @@
-package com.kishor.ds_graphs;
 
 public class GraphsByAdjacencyMatrix {
 	int vcount;
