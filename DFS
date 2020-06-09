@@ -1,0 +1,91 @@
+package com.kishor.ds_graphs;
+
+import java.util.Stack;
+
+public class DFS {
+	
+    Vertex vList[];
+    int vcount;
+	boolean [][]adjMatrix;
+	Stack<Integer> stack;
+	
+	DFS (int vcount){
+		vList= new Vertex [vcount];
+		this.vcount =vcount;
+		adjMatrix= new boolean [vcount][vcount];
+		for(int i=0; i < vcount; i++) {
+			vList[i] = new Vertex(i);
+			for(int j=0; j < vcount; j++) {
+				adjMatrix[i][j] = false;
+			}
+		}
+		stack = new Stack<>();
+	}
+	
+	void addVertex(int vertex) {
+		vList[vcount++] = new Vertex(vertex);
+	}
+	
+	void displayVertex (int v) {
+		System.out.println(vList[v].label);
+	}
+
+	public boolean [][] addEdge(int i, int j) {
+		if(i < vcount && j < vcount) {
+			adjMatrix[i][j] = true;
+			adjMatrix[j][i] = true;
+		}
+		return adjMatrix;
+	}
+	
+	public void dfs() {
+		System.out.println(vList[0]);
+		vList[0].isVisted=true;
+		displayVertex(0);
+		stack.push(0);
+		while(!stack.isEmpty()) {
+			int v = getUnvisitedVertex(stack.peek());
+			System.out.println("This is stack.peek : " + v);
+			if (v==-1) {
+				stack.pop();
+			}else {
+				vList[v].isVisted=true;
+				displayVertex(v);
+				stack.push(v);
+			}
+		}
+		for(int i=0; i < vcount; i++) {
+			vList[i].isVisted=false;
+		}
+	}
+	
+	public int getUnvisitedVertex( int v) {
+		for( int j=0; j < vcount; j++) {
+			if(adjMatrix[v][j]==true && vList[v].isVisted==false) {
+				return j;
+			}
+		}
+		return -1;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		DFS dfs= new DFS(5);
+		dfs.addEdge(0, 1);
+		dfs.addEdge(1, 3);
+		dfs.addEdge(2, 4);
+		dfs.dfs();
+		
+	}
+
+}
+
+class Vertex {
+	boolean isVisted;
+	int label;
+	Vertex(int lab){
+		this.label=lab;
+		isVisted=false;
+	}
+}
