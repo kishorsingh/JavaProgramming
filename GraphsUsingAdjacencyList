@@ -1,0 +1,40 @@
+package com.kishor.ds_graphs;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+public class GraphsUsingAdjacencyList {
+	
+	ArrayList<Integer> vertices;
+	LinkedList<Integer> [] edges;
+	int vcount;
+	GraphsUsingAdjacencyList (int vcount){
+		this.vcount = vcount;
+		vertices = new ArrayList<>();
+		edges = new LinkedList[vcount];
+		for(int i=0; i < vcount; i++) {
+			vertices.add(i);
+			edges[i] =new LinkedList();
+//			System.out.println(edges[i]);
+		}
+	}
+    void addEdge(int i, int j){
+    	int i1 = vertices.indexOf(i);
+    	int j1 =  vertices.indexOf(j);
+    	if(i1 != -1 || j1!= -1) {
+    		edges[i1].addFirst(j);
+    		edges[j1].addFirst(i);
+    	}
+    }
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GraphsUsingAdjacencyList gl = new GraphsUsingAdjacencyList(5);
+        gl.addEdge(0, 2);
+        gl.addEdge(2, 3);
+        gl.addEdge(2, 4);
+        for (int i=0; i < gl.vcount; i++) {
+        	System.out.println(gl.edges[i]);
+        }
+	}
+
+}
