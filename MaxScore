@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-class MaxScore {
+public class MaxScore {
 
     /*
      * Complete the 'maxScore' function below.
@@ -48,10 +48,7 @@ class MaxScore {
     	return maxScore % 1000000007;
 
     }
-
-}
-
-public class Solution {
+    
     public static void main(String[] args) {
     	ArrayList<Integer> arr = new ArrayList<>();
     	for(int i=1; i <=1000; i++) {
@@ -61,4 +58,6 @@ public class Solution {
     	rs.maxScore(arr, 5);
 
     }
+
 }
+
