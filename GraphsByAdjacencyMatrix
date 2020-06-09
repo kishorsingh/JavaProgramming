@@ -1,0 +1,58 @@
+package com.kishor.ds_graphs;
+
+public class GraphsByAdjacencyMatrix {
+	int vcount;
+	boolean [][]adjMatrix;
+	
+	GraphsByAdjacencyMatrix (int vcount){
+		this.vcount =vcount;
+		adjMatrix= new boolean [vcount][vcount];
+		for(int i=0; i < vcount; i++) {
+			for(int j=0; j < vcount; j++) {
+				adjMatrix[i][j] = false;
+			}
+		}
+	}
+	
+	public boolean [][] addEdge(int i, int j) {
+		if(i < vcount && j < vcount) {
+			adjMatrix[i][j] = true;
+			adjMatrix[j][i] = true;
+		}
+		return adjMatrix;
+	}
+	
+	public boolean isEdge(int i, int j) {
+		
+		return adjMatrix[i][j];
+	}
+	
+	public void removeEdge(int i, int j) {
+		if (adjMatrix[i][j]) {
+			adjMatrix[i][j]=false;
+			adjMatrix[j][i]=false;
+		}
+	}
+	public static void main(String[] args) {
+		GraphsByAdjacencyMatrix gm = new GraphsByAdjacencyMatrix(5);
+		gm.addEdge(1, 2);
+		gm.addEdge(2, 4);
+		gm.addEdge(2, 3);
+		for(int i=0; i < 5; i++) {
+			for(int j=0; j < 5; j++) {
+				System.out.print(gm.adjMatrix[i][j] + "  ");
+			}
+			System.out.println();
+		}
+		System.out.println("Edge is there between : " + gm.isEdge(4,3));
+		 gm.removeEdge(4,2);
+		
+		for(int i=0; i < 5; i++) {
+			for(int j=0; j < 5; j++) {
+				System.out.print(gm.adjMatrix[i][j] + "  ");
+			}
+			System.out.println();
+		}
+	}
+
+}
